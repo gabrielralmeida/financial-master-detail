@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-lista-categoria',
@@ -9,7 +10,15 @@ export class ListaCategoriaComponent implements OnInit {
 
   constructor() { }
 
+  items: MenuItem[] = [];
+  home: MenuItem = {};
+
   ngOnInit(): void {
+    this.items = [
+      { label: 'Home', routerLink: "/" },
+      { label: 'Lista', routerLink: "/categorias" }
+    ]
+    this.home = { icon: 'pi pi-home' };
   }
 
 }

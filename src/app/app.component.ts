@@ -14,12 +14,14 @@ export class AppComponent {
     this.items = [
       {
         label: 'Home',
-        items: []
+        items: [],
+        routerLink: "/"
       },
       {
         label: 'Features',
         icon: 'pi pi-fw pi-pencil',
-        items: []
+        items: [],
+        routerLink: "/categorias"
       },
       {
         label: 'Pricing',

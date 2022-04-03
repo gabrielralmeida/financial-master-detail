@@ -5,6 +5,7 @@ import { CategoriasRoutingModule } from './categorias-routing.module';
 import { ListaCategoriaComponent } from './lista-categoria/lista-categoria.component';
 import { FormCategoriaComponent } from './form-categoria/form-categoria.component';
 
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { FormCategoriaComponent } from './form-categoria/form-categoria.componen
   ],
   imports: [
     CommonModule,
-    CategoriasRoutingModule
+    CategoriasRoutingModule,
+    BreadcrumbModule
   ]
 })
 export class CategoriasModule { }
