@@ -6,6 +6,7 @@ import { ListaCategoriaComponent } from './lista-categoria/lista-categoria.compo
 import { FormCategoriaComponent } from './form-categoria/form-categoria.component';
 
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
   imports: [
     CommonModule,
     CategoriasRoutingModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    TableModule
   ]
 })
 export class CategoriasModule { }
