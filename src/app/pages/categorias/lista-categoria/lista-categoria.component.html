@@ -1,17 +1,21 @@
 <p-breadcrumb [model]="items"></p-breadcrumb>
-<p-table [columns]="cols" [value]="produtos" responsiveLayout="scroll">
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th *ngFor="let col of columns">
-        {{col.header}}
-      </th>
+<table class="table table-bordered">
+  <thead>
+    <tr class="bg-dark text-light">
+      <th>Categoria</th>
+      <th>Ações</th>
     </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr>
-      <td *ngFor="let col of columns">
-        {{rowData[col.field]}}
+  </thead>
+  <tbody>
+    <tr *ngFor="let categoria of categorias">
+      <td>
+        <strong>{{categoria.nome}}</strong><br>
+        <small>{{categoria.descricao}}</small>
+      </td>
+      <td>
+        <a [routerLink]="[categoria.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
+        <button (click)="deleteCategoria(categoria)" class="btn btn-outline-danger btn-sm">Excluir</button>
       </td>
     </tr>
-  </ng-template>
-</p-table>
+  </tbody>
+</table>

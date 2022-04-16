@@ -18,21 +18,20 @@ export class CategoriaService {
   getAll(): Observable<Categoria[]> {
     console.log("function getAll");
     return this.http.get(this.apiPath).pipe(
-      catchError(this.handleError), map(this.jsonDataToCategorias)
+      catchError(this.handleError),
+      map(this.jsonDataToCategorias)
     )
   }
 
   getById(id: number): Observable<Categoria> {
     console.log("function gerById");
     const url = `${this.apiPath}/${id}`;
-
     return this.http.get(url).pipe(
       catchError(this.handleError), map(this.jsonDataToCategoria)
     )
   }
 
   create(categoria: Categoria): Observable<Categoria> {
-
     console.log("function create");
     return this.http.post(this.apiPath, categoria).pipe(
       catchError(this.handleError), map(this.jsonDataToCategoria)
@@ -48,9 +47,18 @@ export class CategoriaService {
     )
   }
 
+  delete(categoria: Categoria): Observable<Categoria> {
+    const url = `${this.apiPath}/${categoria.id}`;
+    return this.http.delete(url).pipe(
+      catchError(this.handleError), map(this.jsonDataToCategoria)
+    )
+  }
+
   private jsonDataToCategorias(jsonData: any[]): Categoria[] {
     const categorias: Categoria[] = [];
+    console.log("jsonDataToCategorias=", jsonData);
     jsonData.forEach(element => categorias.push(element as Categoria));
+    console.log("devolve=", categorias);
     return categorias;
   }
 

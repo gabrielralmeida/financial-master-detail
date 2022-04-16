@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
+import { Categoria } from '../Shared/categoria.model';
+import { CategoriaService } from '../Shared/categoria.service';
 
 @Component({
   selector: 'app-lista-categoria',
@@ -9,10 +11,11 @@ import { MenuItem } from 'primeng/api';
 })
 export class ListaCategoriaComponent implements OnInit {
 
-  cols: any[] = [];
-  produtos: any[] = [];
+  categorias: Categoria[] = [];
 
-  constructor() { }
+  constructor(
+    private categoriaService: CategoriaService
+  ) { }
 
   items: MenuItem[] = [];
   home: MenuItem = {};
@@ -24,20 +27,25 @@ export class ListaCategoriaComponent implements OnInit {
     ]
     this.home = { icon: 'pi pi-home' };
 
-    this.cols = [
-      { field: 'primeiro', header: 'Prim' },
-      { field: 'segundo', header: 'Seg' }
-    ];
-
-    this.produtos = [
-      { primeiro: 'aaa', segundo: 'aaaa' },
-      { primeiro: 'bbb', segundo: 'bbbb' },
-      { primeiro: 'ccc', segundo: 'cccc' }
-    ]
-
+    this.categoriaService.getAll().subscribe(
+      categorias => this.categorias = categorias,
+      error => alert("erro ao carregar a lista de categorias")
+    )
+    console.log(this.categorias);
   }
 
+  msgAlert() {
+    alert('excluir');
+  }
 
+  deleteCategoria(categoria: any) {
+    const confirmacao = confirm("Deseja mesmo excluir?");
 
-
+    if (confirmacao) {
+      this.categoriaService.delete(categoria.id).subscribe(
+        () => this.categorias = this.categorias.filter(element => element != categoria),
+        () => alert("erro ao tetar exluir")
+      )
+    }
+  }
 }
